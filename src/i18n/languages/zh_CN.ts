@@ -44,7 +44,7 @@ export const zh_CN: Translation = {
 	[Key.feedbackPlaceholder]: "请输入您的反馈...",
 	[Key.cancel]: "取消",
 	[Key.submit]: "提交",
-	[Key.thankYouHelpful]: "感谢您的肯定！",
+	[Key.thankYouHelpful]: "希望能帮到你",
 	[Key.thankYouNotHelpful]: "感谢您的反馈",
 	[Key.thankYouOtherFeedback]: "感谢您的反馈！",
 };

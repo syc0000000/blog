@@ -9,16 +9,15 @@
 	let { slug }: Props = $props();
 
 	type FeedbackType = "helpful" | "not_helpful" | "other";
-	type FeedbackState = "idle" | "submitting" | "submitted" | "feedback_form" | "failed";
+	type FeedbackState = "idle" | "feedback_form";
 
 	let state: FeedbackState = $state("idle");
 	let selectedType: FeedbackType | null = $state(null);
 	let feedbackText: string = $state("");
 	let submittedType: FeedbackType | null = $state(null);
-	let failMessage: string = $state("");
 
 	const handleFeedbackClick = async (type: FeedbackType) => {
-		if (state === "submitting" || state === "submitted") return;
+		if (state === "feedback_form") return;
 
 		if (type === "other") {
 			state = "feedback_form";
@@ -26,51 +25,30 @@
 			return;
 		}
 
-		state = "submitting";
 		selectedType = type;
+		state = "idle";
 
-		try {
-			const response = await fetch("/api/feedback", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ slug, type, content: "" }),
-			});
-
-			if (response.ok) {
-				submittedType = type;
-				state = "submitted";
-			} else {
-				failMessage = "Request failed";
-				submittedType = type;
-				state = "failed";
-			}
-		} catch {
-			failMessage = "Network error";
-			submittedType = type;
-			state = "failed";
-		}
+		// Fire and forget - play animation immediately
+		fetch("/api/feedback", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ slug, type, content: "" }),
+		}).catch(() => {});
 	};
 
 	const handleOtherSubmit = async () => {
-		if (!feedbackText.trim() || state === "submitting") return;
+		if (!feedbackText.trim()) return;
 
-		state = "submitting";
-		try {
-			const response = await fetch("/api/feedback", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ slug, type: selectedType, content: feedbackText }),
-			});
+		selectedType = selectedType || "other";
+		state = "idle";
+		feedbackText = "";
 
-			if (response.ok) {
-				submittedType = selectedType;
-				state = "submitted";
-			} else {
-				state = "feedback_form";
-			}
-		} catch {
-			state = "feedback_form";
-		}
+		// Fire and forget - play animation immediately
+		fetch("/api/feedback", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ slug, type: "other", content: feedbackText }),
+		}).catch(() => {});
 	};
 
 	const cancelFeedback = () => {
@@ -78,16 +56,10 @@
 		selectedType = null;
 		feedbackText = "";
 	};
-
-	const retry = () => {
-		state = "idle";
-		submittedType = null;
-		failMessage = "";
-	};
 </script>
 
-<div class="feedback-container mt-8 p-6 rounded-2xl border border-[var(--line-divider)]" class:success-helpful={state === "submitted" && submittedType === "helpful"} class:success-not-helpful={state === "submitted" && submittedType === "not_helpful"} class:success-other={state === "submitted" && submittedType === "other"} class:fail={state === "failed"}>
-	{#if state === "idle" || state === "submitting"}
+<div class="feedback-container mt-8 p-6 rounded-2xl border border-[var(--line-divider)]" class:success-helpful={submittedType === "helpful"} class:success-not-helpful={submittedType === "not_helpful"} class:success-other={submittedType === "other"}>
+	{#if state === "idle"}
 		<div class="flex flex-col sm:flex-row items-center gap-4">
 			<div class="flex items-center gap-2 text-[var(--text-secondary)] text-base">
 				<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -97,25 +69,22 @@
 			</div>
 			<div class="flex gap-3">
 				<button
-					onclick={() => handleFeedbackClick("helpful")}
-					disabled={state === "submitting"}
-					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+					onclick={() => { submittedType = "helpful"; handleFeedbackClick("helpful"); }}
+					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 				>
 					<span>👍</span>
 					<span>{i18n(I18nKey.helpful)}</span>
 				</button>
 				<button
-					onclick={() => handleFeedbackClick("not_helpful")}
-					disabled={state === "submitting"}
-					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+					onclick={() => { submittedType = "not_helpful"; handleFeedbackClick("not_helpful"); }}
+					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 				>
 					<span>👎</span>
 					<span>{i18n(I18nKey.notHelpful)}</span>
 				</button>
 				<button
 					onclick={() => handleFeedbackClick("other")}
-					disabled={state === "submitting"}
-					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+					class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 				>
 					<span>💬</span>
 					<span>{i18n(I18nKey.otherFeedback)}</span>
@@ -145,95 +114,74 @@
 				</button>
 				<button
 					onclick={handleOtherSubmit}
-					disabled={state === "submitting" || !feedbackText.trim()}
+					disabled={!feedbackText.trim()}
 					class="px-5 py-2.5 rounded-xl text-base font-medium bg-[var(--primary)] text-white transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
 				>
 					{i18n(I18nKey.submit)}
 				</button>
 			</div>
 		</div>
-	{:else if state === "submitted" || state === "failed"}
-		<div class="flex items-center justify-center gap-3 py-3">
-			{#if state === "submitted"}
-				{#if submittedType === "helpful"}
-					<span class="text-3xl">👍</span>
-					<div class="flex flex-col">
-						<span class="text-lg font-medium text-[var(--primary)]">{i18n(I18nKey.thankYouHelpful)}</span>
-						<svg class="w-6 h-6 text-[var(--primary)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-						</svg>
-					</div>
-				{:else if submittedType === "not_helpful"}
-					<span class="text-3xl">👎</span>
-					<div class="flex flex-col">
-						<span class="text-lg font-medium text-[var(--not-helpful)]">{i18n(I18nKey.thankYouNotHelpful)}</span>
-						<svg class="w-6 h-6 text-[var(--not-helpful)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-						</svg>
-					</div>
-				{:else}
-					<span class="text-3xl">💬</span>
-					<div class="flex flex-col">
-						<span class="text-lg font-medium text-[var(--text-secondary)]">{i18n(I18nKey.thankYouOtherFeedback)}</span>
-						<svg class="w-6 h-6 text-[var(--text-secondary)] mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-						</svg>
-					</div>
-				{/if}
-			{:else}
-				<span class="text-3xl">
-					{#if submittedType === "helpful"}👍{:else if submittedType === "not_helpful"}👎{:else}💬{/if}
-				</span>
-				<div class="flex flex-col">
-					<span class="text-lg font-medium text-[var(--fail-color)]">{failMessage}</span>
-					<button onclick={retry} class="text-base text-[var(--text-secondary)] underline mt-1 hover:text-[var(--primary)] transition-colors">
-						Retry
-					</button>
-				</div>
-			{/if}
-		</div>
 	{/if}
 </div>
+
+{#if submittedType}
+	<div class="feedback-result mt-4 p-4 rounded-xl border flex items-center justify-center gap-3" class:result-helpful={submittedType === "helpful"} class:result-not-helpful={submittedType === "not_helpful"} class:result-other={submittedType === "other"}>
+		<span class="text-2xl">
+			{#if submittedType === "helpful"}👍{:else if submittedType === "not_helpful"}👎{:else}💬{/if}
+		</span>
+		<div class="flex flex-col">
+			<span class="text-base font-medium">
+				{#if submittedType === "helpful"}
+					{i18n(I18nKey.thankYouHelpful)}
+				{:else if submittedType === "not_helpful"}
+					{i18n(I18nKey.thankYouNotHelpful)}
+				{:else}
+					{i18n(I18nKey.thankYouOtherFeedback)}
+				{/if}
+			</span>
+			<svg class="w-5 h-5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+			</svg>
+		</div>
+	</div>
+{/if}
 
 <style>
 	.feedback-container {
 		background: var(--card-bg);
-		transition: all 0.3s ease;
 	}
 	.feedback-btn {
 		background: var(--btn-plain-bg);
 		color: var(--text-secondary);
 	}
-	.feedback-btn:hover:not(:disabled) {
+	.feedback-btn:hover {
 		border-color: var(--primary);
 		color: var(--primary);
 		transform: translateY(-1px);
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 	}
-	.feedback-btn:active:not(:disabled) {
+	.feedback-btn:active {
 		transform: translateY(0);
 		box-shadow: none;
 	}
 
-	:global(.success-helpful) {
+	.feedback-result {
+		animation: fadeIn 0.3s ease;
+	}
+	.result-helpful {
 		background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
 		border-color: rgba(34, 197, 94, 0.3);
-		animation: fadeIn 0.3s ease;
+		color: var(--primary);
 	}
-	:global(.success-not-helpful) {
+	.result-not-helpful {
 		background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05));
 		border-color: rgba(249, 115, 22, 0.3);
-		animation: fadeIn 0.3s ease;
+		color: var(--not-helpful);
 	}
-	:global(.success-other) {
+	.result-other {
 		background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
 		border-color: rgba(59, 130, 246, 0.3);
-		animation: fadeIn 0.3s ease;
-	}
-	:global(.fail) {
-		background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
-		border-color: rgba(239, 68, 68, 0.3);
-		animation: fadeIn 0.3s ease;
+		color: var(--text-secondary);
 	}
 
 	@keyframes fadeIn {

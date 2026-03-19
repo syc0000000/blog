@@ -85,21 +85,18 @@
 						onclick={(e) => handleFeedbackClick("helpful", e)}
 						class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 					>
-						<span>👍</span>
 						<span>{i18n(I18nKey.helpful)}</span>
 					</button>
 					<button
 						onclick={(e) => handleFeedbackClick("not_helpful", e)}
 						class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 					>
-						<span>👎</span>
 						<span>{i18n(I18nKey.notHelpful)}</span>
 					</button>
 					<button
 						onclick={(e) => handleFeedbackClick("other", e)}
 						class="feedback-btn px-5 py-2.5 rounded-xl text-base font-medium flex items-center gap-2 border border-[var(--line-divider)] transition-all"
 					>
-						<span>💬</span>
 						<span>{i18n(I18nKey.otherFeedback)}</span>
 					</button>
 				</div>
@@ -139,9 +136,9 @@
 		<div class="ripple-overlay" style={rippleStyle}></div>
 	{:else}
 		<div class="flex items-center justify-center gap-4 success-content">
-			<span class="text-3xl">
-				{#if submittedType === "helpful"}👍{:else if submittedType === "not_helpful"}👎{:else}💬{/if}
-			</span>
+			<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+			</svg>
 			<span class="text-lg font-medium">
 				{#if submittedType === "helpful"}
 					{i18n(I18nKey.thankYouHelpful)}
@@ -151,9 +148,6 @@
 					{i18n(I18nKey.thankYouOtherFeedback)}
 				{/if}
 			</span>
-			<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-			</svg>
 		</div>
 	{/if}
 </div>

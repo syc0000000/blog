@@ -32,6 +32,18 @@ enum I18nKey {
 	author = "author",
 	publishedAt = "publishedAt",
 	license = "license",
+
+	feedbackPrompt = "feedbackPrompt",
+	helpful = "helpful",
+	notHelpful = "notHelpful",
+	otherFeedback = "otherFeedback",
+	otherFeedbackHint = "otherFeedbackHint",
+	feedbackPlaceholder = "feedbackPlaceholder",
+	cancel = "cancel",
+	submit = "submit",
+	thankYouHelpful = "thankYouHelpful",
+	thankYouNotHelpful = "thankYouNotHelpful",
+	thankYouOtherFeedback = "thankYouOtherFeedback",
 }
 
 export default I18nKey;

@@ -35,4 +35,16 @@ export const zh_TW: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "發佈於",
 	[Key.license]: "許可協議",
+
+	[Key.feedbackPrompt]: "覺得這篇文章怎麼樣？",
+	[Key.helpful]: "有用",
+	[Key.notHelpful]: "無用",
+	[Key.otherFeedback]: "其他回饋",
+	[Key.otherFeedbackHint]: "請告訴我們您的想法",
+	[Key.feedbackPlaceholder]: "請輸入您的回饋...",
+	[Key.cancel]: "取消",
+	[Key.submit]: "送出",
+	[Key.thankYouHelpful]: "感謝您的肯定！",
+	[Key.thankYouNotHelpful]: "感謝您的回饋，我們會改進",
+	[Key.thankYouOtherFeedback]: "感謝您的回饋！",
 };

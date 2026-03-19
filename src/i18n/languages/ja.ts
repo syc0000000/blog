@@ -35,4 +35,16 @@ export const ja: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "公開日",
 	[Key.license]: "ライセンス",
+
+	[Key.feedbackPrompt]: "この記事は役に立ちましたか？",
+	[Key.helpful]: "参考になった",
+	[Key.notHelpful]: "参考にならなかった",
+	[Key.otherFeedback]: "その他のフィードバック",
+	[Key.otherFeedbackHint]: "ご感想をお聞かせください",
+	[Key.feedbackPlaceholder]: "フィードバックを入力...",
+	[Key.cancel]: "キャンセル",
+	[Key.submit]: "送信",
+	[Key.thankYouHelpful]: "フィードバックありがとうございます！",
+	[Key.thankYouNotHelpful]: "フィードバックありがとうございます、の改善に活かします",
+	[Key.thankYouOtherFeedback]: "フィードバックありがとうございます！",
 };

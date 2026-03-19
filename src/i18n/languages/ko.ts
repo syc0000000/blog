@@ -35,4 +35,16 @@ export const ko: Translation = {
 	[Key.author]: "저자",
 	[Key.publishedAt]: "게시일",
 	[Key.license]: "라이선스",
+
+	[Key.feedbackPrompt]: "이 글이 도움이 되셨나요?",
+	[Key.helpful]: "도움이 됨",
+	[Key.notHelpful]: "도움이 되지 않음",
+	[Key.otherFeedback]: "기타 피드백",
+	[Key.otherFeedbackHint]: "의견을 알려주세요",
+	[Key.feedbackPlaceholder]: "피드백 입력...",
+	[Key.cancel]: "취소",
+	[Key.submit]: "제출",
+	[Key.thankYouHelpful]: "피드백 감사합니다!",
+	[Key.thankYouNotHelpful]: "피드백 감사합니다, 개선에 반영하겠습니다",
+	[Key.thankYouOtherFeedback]: "피드백 감사합니다!",
 };

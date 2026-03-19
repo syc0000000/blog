@@ -35,4 +35,16 @@ export const id: Translation = {
 	[Key.author]: "Penulis",
 	[Key.publishedAt]: "Diterbitkan pada",
 	[Key.license]: "Lisensi",
+
+	[Key.feedbackPrompt]: "Apakah artikel ini bermanfaat?",
+	[Key.helpful]: "Membantu",
+	[Key.notHelpful]: "Kurang membantu",
+	[Key.otherFeedback]: "Komentar lain",
+	[Key.otherFeedbackHint]: "Ceritakan pendapatmu",
+	[Key.feedbackPlaceholder]: "Tulis komentar...",
+	[Key.cancel]: "Batal",
+	[Key.submit]: "Kirim",
+	[Key.thankYouHelpful]: "Terima kasih atas umpan baliknya!",
+	[Key.thankYouNotHelpful]: "Terima kasih, kami akan memperbaikinya",
+	[Key.thankYouOtherFeedback]: "Terima kasih atas umpan baliknya!",
 };

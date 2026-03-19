@@ -35,4 +35,16 @@ export const es: Translation = {
 	[Key.author]: "Autor",
 	[Key.publishedAt]: "Publicado el",
 	[Key.license]: "Licencia",
+
+	[Key.feedbackPrompt]: "¿Fue útil este artículo?",
+	[Key.helpful]: "Útil",
+	[Key.notHelpful]: "No útil",
+	[Key.otherFeedback]: "Otro comentario",
+	[Key.otherFeedbackHint]: "Cuéntanos tu opinión",
+	[Key.feedbackPlaceholder]: "Escribe tu comentario...",
+	[Key.cancel]: "Cancelar",
+	[Key.submit]: "Enviar",
+	[Key.thankYouHelpful]: "¡Gracias por tu comentario!",
+	[Key.thankYouNotHelpful]: "Gracias, lo tendremos en cuenta",
+	[Key.thankYouOtherFeedback]: "¡Gracias por tu comentario!",
 };

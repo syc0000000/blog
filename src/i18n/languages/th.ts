@@ -35,4 +35,16 @@ export const th: Translation = {
 	[Key.author]: "ผู้เขียน",
 	[Key.publishedAt]: "เผยแพร่เมื่อ",
 	[Key.license]: "สัญญาอนุญาต",
+
+	[Key.feedbackPrompt]: "บทความนี้มีประโยชน์หรือไม่?",
+	[Key.helpful]: "มีประโยชน์",
+	[Key.notHelpful]: "ไม่มีประโยชน์",
+	[Key.otherFeedback]: "ความคิดเห็นอื่น",
+	[Key.otherFeedbackHint]: "บอกเราความคิดเห็นของคุณ",
+	[Key.feedbackPlaceholder]: "เขียนความคิดเห็น...",
+	[Key.cancel]: "ยกเลิก",
+	[Key.submit]: "ส่ง",
+	[Key.thankYouHelpful]: "ขอบคุณสำหรับความคิดเห็น!",
+	[Key.thankYouNotHelpful]: "ขอบคุณ เราจะปรับปรุง",
+	[Key.thankYouOtherFeedback]: "ขอบคุณสำหรับความคิดเห็น!",
 };

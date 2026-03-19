@@ -35,4 +35,16 @@ export const tr: Translation = {
 	[Key.author]: "Yazar",
 	[Key.publishedAt]: "Yayınlanma:",
 	[Key.license]: "Lisans",
+
+	[Key.feedbackPrompt]: "Bu makale işinize yaradı mı?",
+	[Key.helpful]: "İşe yaradı",
+	[Key.notHelpful]: "İşe yaramadı",
+	[Key.otherFeedback]: "Diğer geri bildirim",
+	[Key.otherFeedbackHint]: "Düşüncelerinizi paylaşın",
+	[Key.feedbackPlaceholder]: "Geri bildiriminizi yazın...",
+	[Key.cancel]: "İptal",
+	[Key.submit]: "Gönder",
+	[Key.thankYouHelpful]: "Geri bildiriminiz için teşekkürler!",
+	[Key.thankYouNotHelpful]: "Teşekkürler, geliştirmeye çalışacağız",
+	[Key.thankYouOtherFeedback]: "Geri bildiriminiz için teşekkürler!",
 };

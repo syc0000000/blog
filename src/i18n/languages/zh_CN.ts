@@ -35,4 +35,16 @@ export const zh_CN: Translation = {
 	[Key.author]: "作者",
 	[Key.publishedAt]: "发布于",
 	[Key.license]: "许可协议",
+
+	[Key.feedbackPrompt]: "觉得这篇文章怎么样？",
+	[Key.helpful]: "有用",
+	[Key.notHelpful]: "无用",
+	[Key.otherFeedback]: "其他反馈",
+	[Key.otherFeedbackHint]: "请告诉我们您的想法，我们会认真倾听",
+	[Key.feedbackPlaceholder]: "请输入您的反馈...",
+	[Key.cancel]: "取消",
+	[Key.submit]: "提交",
+	[Key.thankYouHelpful]: "感谢您的肯定！",
+	[Key.thankYouNotHelpful]: "感谢您的反馈",
+	[Key.thankYouOtherFeedback]: "感谢您的反馈！",
 };

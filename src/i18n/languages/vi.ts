@@ -35,4 +35,16 @@ export const vi: Translation = {
 	[Key.author]: "Tác giả",
 	[Key.publishedAt]: "Đăng vào lúc",
 	[Key.license]: "Giấy phép bản quyền",
+
+	[Key.feedbackPrompt]: "Bài viết này có hữu ích không?",
+	[Key.helpful]: "Hữu ích",
+	[Key.notHelpful]: "Không hữu ích",
+	[Key.otherFeedback]: "Phản hồi khác",
+	[Key.otherFeedbackHint]: "Chia sẻ ý kiến của bạn",
+	[Key.feedbackPlaceholder]: "Nhập phản hồi của bạn...",
+	[Key.cancel]: "Hủy",
+	[Key.submit]: "Gửi",
+	[Key.thankYouHelpful]: "Cảm ơn phản hồi của bạn!",
+	[Key.thankYouNotHelpful]: "Cảm ơn, chúng tôi sẽ cải thiện",
+	[Key.thankYouOtherFeedback]: "Cảm ơn phản hồi của bạn!",
 };

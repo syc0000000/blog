@@ -1,0 +1,28 @@
+# Binaries
+server
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/

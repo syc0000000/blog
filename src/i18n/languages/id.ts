@@ -47,4 +47,5 @@ export const id: Translation = {
 	[Key.thankYouHelpful]: "Terima kasih atas umpan baliknya!",
 	[Key.thankYouNotHelpful]: "Terima kasih, kami akan memperbaikinya",
 	[Key.thankYouOtherFeedback]: "Terima kasih atas umpan baliknya!",
+	[Key.revokeFeedback]: "Batalkan",
 };

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import I18nKey from "@i18n/i18nKey";
 	import { i18n } from "@i18n/translation";
+	import { onMount } from "svelte";
 
 	interface Props {
 		slug: string;
@@ -16,6 +17,21 @@
 	let feedbackText: string = $state("");
 	let submittedType: FeedbackType | null = $state(null);
 	let rippleStyle: string = $state("");
+
+	const STORAGE_KEY = `feedback_${slug}`;
+
+	onMount(() => {
+		const stored = localStorage.getItem(STORAGE_KEY);
+		if (stored) {
+			try {
+				const data = JSON.parse(stored);
+				submittedType = data.type;
+				state = "idle";
+			} catch {
+				localStorage.removeItem(STORAGE_KEY);
+			}
+		}
+	});
 
 	const handleFeedbackClick = async (type: FeedbackType, event: MouseEvent) => {
 		if (state === "feedback_form") return;
@@ -39,6 +55,9 @@
 		submittedType = type;
 		state = "idle";
 
+		// Save to localStorage
+		localStorage.setItem(STORAGE_KEY, JSON.stringify({ type }));
+
 		// Fire and forget
 		fetch("/api/feedback", {
 			method: "POST",
@@ -53,13 +72,17 @@
 		selectedType = "other";
 		submittedType = "other";
 		state = "idle";
+		const content = feedbackText;
 		feedbackText = "";
+
+		// Save to localStorage
+		localStorage.setItem(STORAGE_KEY, JSON.stringify({ type: "other", content }));
 
 		// Fire and forget
 		fetch("/api/feedback", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ slug, type: "other", content: feedbackText }),
+			body: JSON.stringify({ slug, type: "other", content }),
 		}).catch(() => {});
 	};
 
@@ -67,6 +90,14 @@
 		state = "idle";
 		selectedType = null;
 		feedbackText = "";
+	};
+
+	const revokeFeedback = () => {
+		localStorage.removeItem(STORAGE_KEY);
+		submittedType = null;
+		selectedType = null;
+		state = "idle";
+		rippleStyle = "";
 	};
 </script>
 
@@ -138,7 +169,7 @@
 
 		<div class="ripple-overlay" style={rippleStyle}></div>
 	{:else}
-		<div class="flex items-center justify-center gap-4 success-content">
+		<div class="flex items-center justify-center gap-3 success-content">
 			{#if submittedType === "not_helpful"}
 				<svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -157,6 +188,12 @@
 					{i18n(I18nKey.thankYouOtherFeedback)}
 				{/if}
 			</span>
+			<button
+				onclick={revokeFeedback}
+				class="ml-2 px-3 py-1.5 rounded-lg text-sm border border-[var(--line-divider)] text-[var(--text-secondary)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors"
+			>
+				{i18n(I18nKey.revokeFeedback)}
+			</button>
 		</div>
 	{/if}
 </div>

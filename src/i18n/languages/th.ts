@@ -47,4 +47,5 @@ export const th: Translation = {
 	[Key.thankYouHelpful]: "ขอบคุณสำหรับความคิดเห็น!",
 	[Key.thankYouNotHelpful]: "ขอบคุณ เราจะปรับปรุง",
 	[Key.thankYouOtherFeedback]: "ขอบคุณสำหรับความคิดเห็น!",
+	[Key.revokeFeedback]: "เลิกทำ",
 };

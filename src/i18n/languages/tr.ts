@@ -47,4 +47,5 @@ export const tr: Translation = {
 	[Key.thankYouHelpful]: "Geri bildiriminiz için teşekkürler!",
 	[Key.thankYouNotHelpful]: "Teşekkürler, geliştirmeye çalışacağız",
 	[Key.thankYouOtherFeedback]: "Geri bildiriminiz için teşekkürler!",
+	[Key.revokeFeedback]: "Geri al",
 };

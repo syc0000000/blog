@@ -47,4 +47,5 @@ export const ja: Translation = {
 	[Key.thankYouHelpful]: "フィードバックありがとうございます！",
 	[Key.thankYouNotHelpful]: "フィードバックありがとうございます、の改善に活かします",
 	[Key.thankYouOtherFeedback]: "フィードバックありがとうございます！",
+	[Key.revokeFeedback]: "元に戻す",
 };

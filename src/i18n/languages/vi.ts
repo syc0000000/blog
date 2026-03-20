@@ -47,4 +47,5 @@ export const vi: Translation = {
 	[Key.thankYouHelpful]: "Cảm ơn phản hồi của bạn!",
 	[Key.thankYouNotHelpful]: "Cảm ơn, chúng tôi sẽ cải thiện",
 	[Key.thankYouOtherFeedback]: "Cảm ơn phản hồi của bạn!",
+	[Key.revokeFeedback]: "Hoàn tác",
 };

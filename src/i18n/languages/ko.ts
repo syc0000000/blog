@@ -47,4 +47,5 @@ export const ko: Translation = {
 	[Key.thankYouHelpful]: "피드백 감사합니다!",
 	[Key.thankYouNotHelpful]: "피드백 감사합니다, 개선에 반영하겠습니다",
 	[Key.thankYouOtherFeedback]: "피드백 감사합니다!",
+	[Key.revokeFeedback]: "실행 취소",
 };

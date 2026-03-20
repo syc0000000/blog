@@ -47,4 +47,5 @@ export const en: Translation = {
 	[Key.thankYouHelpful]: "Thanks for your feedback!",
 	[Key.thankYouNotHelpful]: "Thanks for letting us know, we'll improve",
 	[Key.thankYouOtherFeedback]: "Thanks for your feedback!",
+	[Key.revokeFeedback]: "Undo",
 };

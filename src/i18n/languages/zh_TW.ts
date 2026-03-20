@@ -47,4 +47,5 @@ export const zh_TW: Translation = {
 	[Key.thankYouHelpful]: "感謝您的肯定！",
 	[Key.thankYouNotHelpful]: "感謝您的回饋，我們會改進",
 	[Key.thankYouOtherFeedback]: "感謝您的回饋！",
+	[Key.revokeFeedback]: "撤回",
 };

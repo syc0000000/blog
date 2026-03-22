@@ -61,3 +61,7 @@ func hashIP(ip string) string {
 	hash := sha256.Sum256([]byte(ip))
 	return hex.EncodeToString(hash[:])
 }
+
+func (s *FeedbackService) GetHelpfulCount(slug string) (int64, error) {
+	return s.repo.CountBySlug(slug)
+}

@@ -35,6 +35,7 @@ func main() {
 	{
 		api.POST("/feedback", h.CreateFeedback)
 		api.DELETE("/feedback", h.RevokeFeedback)
+		api.GET("/feedback/:slug/count", h.GetHelpfulCount)
 	}
 
 	r.GET("/health", func(c *gin.Context) {

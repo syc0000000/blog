@@ -87,3 +87,28 @@ func (h *FeedbackHandler) RevokeFeedback(c *gin.Context) {
 		Message: "Feedback revoked successfully",
 	})
 }
+
+func (h *FeedbackHandler) GetHelpfulCount(c *gin.Context) {
+	slug := c.Param("slug")
+	if slug == "" {
+		c.JSON(http.StatusBadRequest, model.Response{
+			Success: false,
+			Error:   "Missing slug",
+		})
+		return
+	}
+
+	count, err := h.svc.GetHelpfulCount(slug)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, model.Response{
+			Success: false,
+			Error:   "Failed to get count",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"count":   count,
+	})
+}

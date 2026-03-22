@@ -36,3 +36,9 @@ func (r *FeedbackRepository) ExistsBySlugAndIPHash(slug, ipHash string) (bool, e
 	err := r.db.Model(&model.Feedback{}).Where("slug = ? AND ip_hash = ?", slug, ipHash).Count(&count).Error
 	return count > 0, err
 }
+
+func (r *FeedbackRepository) CountBySlug(slug string) (int64, error) {
+	var count int64
+	err := r.db.Model(&model.Feedback{}).Where("slug = ?", slug).Count(&count).Error
+	return count, err
+}

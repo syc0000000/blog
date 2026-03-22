@@ -14,6 +14,7 @@ import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import PostFeedback from "../../components/PostFeedback.svelte";
+import HelpfulCount from "../../components/HelpfulCount.svelte";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -85,15 +86,15 @@ const jsonLd = {
             </div>
 
             <!-- metadata -->
-            <div class="onload-animation">
+            <div class="onload-animation flex flex-wrap items-center justify-between gap-4 mb-5">
                 <PostMetadata
-                        class="mb-5"
                         published={entry.data.published}
                         updated={entry.data.updated}
                         tags={entry.data.tags}
                         category={entry.data.category}
                 ></PostMetadata>
-                {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
+                <HelpfulCount slug={entry.slug} client:visible></HelpfulCount>
+                {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] w-full"></div>}
             </div>
 
             <!-- always show cover as long as it has one -->

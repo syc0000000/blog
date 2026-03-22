@@ -8,9 +8,9 @@ services:
     network_mode: host
     environment:
       - DB_HOST=127.0.0.1
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
       - DB_NAME=blog_feedback
       - PORT=8080
     healthcheck:

@@ -49,4 +49,5 @@ export const zh_CN: Translation = {
 	[Key.thankYouOtherFeedback]: "感谢您的反馈！",
 	[Key.revokeFeedback]: "撤回",
 	[Key.helpfulCount]: "{count} 人觉得有帮助",
+	[Key.viewCount]: "{count} 次阅读",
 };

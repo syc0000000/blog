@@ -26,9 +26,13 @@ func main() {
 		log.Fatalf("Failed to initialize database: %v", err)
 	}
 
-	repo := repository.NewFeedbackRepository(db)
-	svc := service.NewFeedbackService(repo)
-	h := handler.NewFeedbackHandler(svc)
+	feedbackRepo := repository.NewFeedbackRepository(db)
+	feedbackSvc := service.NewFeedbackService(feedbackRepo)
+	feedbackHandler := handler.NewFeedbackHandler(feedbackSvc)
+
+	viewRepo := repository.NewViewRepository(db)
+	viewSvc := service.NewViewService(viewRepo)
+	viewHandler := handler.NewViewHandler(viewSvc)
 
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
@@ -40,9 +44,12 @@ func main() {
 
 	api := r.Group("/api")
 	{
-		api.POST("/feedback", h.CreateFeedback)
-		api.DELETE("/feedback", h.RevokeFeedback)
-		api.GET("/feedback/:slug/count", h.GetHelpfulCount)
+		api.POST("/feedback", feedbackHandler.CreateFeedback)
+		api.DELETE("/feedback", feedbackHandler.RevokeFeedback)
+		api.GET("/feedback/:slug/count", feedbackHandler.GetHelpfulCount)
+
+		api.POST("/views/:slug", viewHandler.IncrementView)
+		api.GET("/views/:slug", viewHandler.GetViewCount)
 	}
 
 	r.GET("/health", func(c *gin.Context) {

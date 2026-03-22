@@ -46,6 +46,7 @@ enum I18nKey {
 	thankYouOtherFeedback = "thankYouOtherFeedback",
 	revokeFeedback = "revokeFeedback",
 	helpfulCount = "helpfulCount",
+	viewCount = "viewCount",
 }
 
 export default I18nKey;

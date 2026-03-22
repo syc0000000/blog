@@ -46,7 +46,10 @@
 		}
 
 		try {
-			const res = await fetch(`/api/feedback/${slug}/count`);
+			const apiUrl = import.meta.env.DEV
+				? `http://localhost:8080/api/feedback/${encodeURIComponent(slug)}/count`
+				: `/api/feedback/${encodeURIComponent(slug)}/count`;
+			const res = await fetch(apiUrl);
 			if (res.ok) {
 				const data = await res.json();
 				count = data.count ?? 0;

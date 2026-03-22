@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/nbb/blog-feedback/internal/handler"
 	"github.com/nbb/blog-feedback/internal/repository"
@@ -30,6 +31,12 @@ func main() {
 	h := handler.NewFeedbackHandler(svc)
 
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:    []string{"GET", "POST", "DELETE", "OPTIONS"},
+		AllowHeaders:    []string{"Origin", "Content-Type"},
+		AllowCredentials: true,
+	}))
 
 	api := r.Group("/api")
 	{

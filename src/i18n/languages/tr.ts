@@ -48,4 +48,21 @@ export const tr: Translation = {
 	[Key.thankYouNotHelpful]: "Teşekkürler, geliştirmeye çalışacağız",
 	[Key.thankYouOtherFeedback]: "Geri bildiriminiz için teşekkürler!",
 	[Key.revokeFeedback]: "Geri al",
+	[Key.helpfulCount]: "{count} kişi yararlı buldu",
+	[Key.viewCount]: "{count} görüntülenme",
+
+	// Anime page
+	[Key.anime]: "Anime",
+	[Key.animeTitle]: "Anime Listesi",
+	[Key.animeSubtitle]: "Anime koleksiyonum",
+	[Key.animeFilterAll]: "Tümü",
+	[Key.animeStatusWatching]: "İzleniyor",
+	[Key.animeStatusCompleted]: "Tamamlandı",
+	[Key.animeStatusPlanned]: "Planlandı",
+	[Key.animeStatusOnHold]: "Beklemede",
+	[Key.animeStatusDropped]: "Bırakıldı",
+	[Key.animeYear]: "Yıl",
+	[Key.animeStudio]: "Stüdyo",
+	[Key.animeEmpty]: "Anime verisi yok",
+	[Key.animeEmptyLocal]: "Yerel anime verisi yok",
 };

@@ -10,6 +10,10 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: "NBB's Blog",
 	subtitle: "",
+	bangumi: {
+		userId: "914293", // 在此处设置你的Bangumi用户ID
+		fetchOnDev: true, // 是否在开发环境下获取 Bangumi 数据
+	},
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -43,6 +47,10 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
+		{
+			name: "番剧",
+			url: "/anime/",
+		},
 		LinkPreset.About,
 		{
 			name: "开往",

@@ -1,0 +1,41 @@
+---
+import AnimeCard from "./AnimeCard.astro";
+import type { AnimeItem } from "../utils/anime-data";
+
+interface StatusInfo {
+	text: string;
+	class: string;
+	icon: string;
+}
+
+interface Props {
+	animeList: AnimeItem[];
+	statusMap: Record<string, StatusInfo>;
+	yearLabel: string;
+	studioLabel: string;
+}
+
+const { animeList, statusMap, yearLabel, studioLabel } = Astro.props;
+---
+
+<div
+	id="anime-list-container"
+	class="anime-grid-container opacity-0 transition-opacity duration-300"
+>
+	{animeList.map((anime) => {
+		const statusInfo =
+			statusMap[anime.status] || {
+				text: anime.status,
+				class: "btn-regular",
+				icon: "?",
+			};
+		return (
+			<AnimeCard
+				anime={anime}
+				statusInfo={statusInfo}
+				yearLabel={yearLabel}
+				studioLabel={studioLabel}
+			/>
+		);
+	})}
+</div>

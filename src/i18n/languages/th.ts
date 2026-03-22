@@ -48,4 +48,21 @@ export const th: Translation = {
 	[Key.thankYouNotHelpful]: "ขอบคุณ เราจะปรับปรุง",
 	[Key.thankYouOtherFeedback]: "ขอบคุณสำหรับความคิดเห็น!",
 	[Key.revokeFeedback]: "เลิกทำ",
+	[Key.helpfulCount]: "{count} คน บอกว่ามีประโยชน์",
+	[Key.viewCount]: "{count} ครั้งที่เข้าชม",
+
+	// Anime page
+	[Key.anime]: "อนิเมะ",
+	[Key.animeTitle]: "รายการอนิเมะ",
+	[Key.animeSubtitle]: "คอลเลกชันอนิเมะของฉัน",
+	[Key.animeFilterAll]: "ทั้งหมด",
+	[Key.animeStatusWatching]: "กำลังดู",
+	[Key.animeStatusCompleted]: "เสร็จแล้ว",
+	[Key.animeStatusPlanned]: "วางแผนไว้",
+	[Key.animeStatusOnHold]: "หยุดชั่วคราว",
+	[Key.animeStatusDropped]: "ยกเลิก",
+	[Key.animeYear]: "ปี",
+	[Key.animeStudio]: "สตูดิโอ",
+	[Key.animeEmpty]: "ไม่มีข้อมูลอนิเมะ",
+	[Key.animeEmptyLocal]: "ไม่มีข้อมูลอนิเมะในเครื่อง",
 };

@@ -4,6 +4,11 @@ export type SiteConfig = {
 	title: string;
 	subtitle: string;
 
+	bangumi?: {
+		userId?: string;
+		fetchOnDev?: boolean;
+	};
+
 	lang:
 		| "en"
 		| "zh_CN"

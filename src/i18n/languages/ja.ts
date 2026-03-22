@@ -48,5 +48,21 @@ export const ja: Translation = {
 	[Key.thankYouNotHelpful]: "フィードバックありがとうございます、の改善に活かします",
 	[Key.thankYouOtherFeedback]: "フィードバックありがとうございます！",
 	[Key.revokeFeedback]: "元に戻す",
+	[Key.helpfulCount]: "{count}人が参考になった",
 	[Key.viewCount]: "{count} 閲覧",
+
+	// Anime page
+	[Key.anime]: "アニメ",
+	[Key.animeTitle]: "アニメリスト",
+	[Key.animeSubtitle]: "收藏のアニメリスト",
+	[Key.animeFilterAll]: "全て",
+	[Key.animeStatusWatching]: "視聴中",
+	[Key.animeStatusCompleted]: "完了",
+	[Key.animeStatusPlanned]: "視聴予定",
+	[Key.animeStatusOnHold]: "保留",
+	[Key.animeStatusDropped]: "中止",
+	[Key.animeYear]: "年",
+	[Key.animeStudio]: "スタジオ",
+	[Key.animeEmpty]: "アニメデータなし",
+	[Key.animeEmptyLocal]: "ローカルアニメデータなし",
 };

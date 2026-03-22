@@ -1,0 +1,118 @@
+---
+import "../styles/anime.css";
+
+import AnimeFilters from "@components/AnimeFilters.astro";
+import AnimeGrid from "@components/AnimeGrid.astro";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { getAnimeList, getStatusMap } from "../utils/anime-data";
+
+const animeList = getAnimeList();
+const statusMap = getStatusMap();
+const emptyMessage = i18n(I18nKey.animeEmpty);
+---
+
+<MainGridLayout title={i18n(I18nKey.anime)}>
+	<div
+		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
+	>
+		<div class="card-base anime-card-base z-10 px-9 py-6 relative w-full">
+			<div class="relative w-full mb-8">
+				<div class="flex flex-col gap-2 mb-6">
+					<h1 class="text-2xl font-bold text-black dark:text-white">
+						{i18n(I18nKey.animeTitle)}
+					</h1>
+					<p class="text-black/60 dark:text-white/60 text-sm">
+						{i18n(I18nKey.animeSubtitle)}
+					</p>
+				</div>
+
+				<div class="mb-6">
+					<AnimeFilters
+						filterAllLabel={i18n(I18nKey.animeFilterAll)}
+						statusWatchingLabel={i18n(I18nKey.animeStatusWatching)}
+						statusPlannedLabel={i18n(I18nKey.animeStatusPlanned)}
+						statusCompletedLabel={i18n(I18nKey.animeStatusCompleted)}
+						statusOnHoldLabel={i18n(I18nKey.animeStatusOnHold)}
+						statusDroppedLabel={i18n(I18nKey.animeStatusDropped)}
+						showExtendedFilters={true}
+					/>
+				</div>
+			</div>
+
+			<div class="mb-8">
+				{
+					animeList.length === 0 ? (
+						<div class="text-center py-12">
+							<div class="text-5xl mb-4">😢</div>
+							<h3 class="text-xl font-medium text-black/80 dark:text-white/80 mb-2">
+								{emptyMessage}
+							</h3>
+							<p class="text-black/60 dark:text-white/60">
+								{i18n(I18nKey.animeEmptyLocal)}
+							</p>
+						</div>
+					) : (
+						<AnimeGrid
+							animeList={animeList}
+							statusMap={statusMap}
+							yearLabel={i18n(I18nKey.animeYear)}
+							studioLabel={i18n(I18nKey.animeStudio)}
+						/>
+					)
+				}
+			</div>
+		</div>
+	</div>
+
+	<script is:inline>
+		function initFilterButtons() {
+			const filterTags = document.querySelectorAll(".anime-filter-tag");
+			const listContainer = document.getElementById(
+				"anime-list-container",
+			);
+
+			filterTags.forEach((tag) => {
+				const clickHandler = function () {
+					if (this.classList.contains("anime-active")) {
+						return;
+					}
+
+					filterTags.forEach((t) =>
+						t.classList.remove("anime-active"),
+					);
+					this.classList.add("anime-active");
+
+					const status = this.getAttribute("data-status");
+					const animeItems = Array.from(
+						listContainer.children,
+					).filter((item) => item.hasAttribute("data-anime-status"));
+
+					animeItems.forEach((item) => {
+						const itemStatus = item.getAttribute("data-anime-status");
+						const shouldShow =
+							status === "all" || itemStatus === status;
+
+						if (shouldShow) {
+							item.classList.remove("anime-hidden");
+							item.classList.add("anime-fade-in-active");
+						} else {
+							item.classList.add("anime-hidden");
+							item.classList.remove("anime-fade-in-active");
+						}
+					});
+				};
+
+				tag.addEventListener("click", clickHandler);
+			});
+
+			// Remove opacity-0 after init
+			if (listContainer) {
+				listContainer.classList.remove("opacity-0");
+			}
+		}
+
+		document.addEventListener("DOMContentLoaded", initFilterButtons);
+	</script>
+</MainGridLayout>

@@ -1,0 +1,99 @@
+.anime-card-base {
+	container-type: inline-size;
+}
+
+.anime-grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	transition: gap 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1024px) {
+	.anime-grid-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 640px) {
+	.anime-grid-container {
+		grid-template-columns: 1fr;
+	}
+}
+
+.anime-filter-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.anime-filter-tag {
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--line-divider);
+	border-radius: var(--radius-large);
+	background: var(--btn-regular-bg);
+	color: var(--btn-content);
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	white-space: nowrap;
+}
+.anime-filter-tag:hover:not(.anime-active) {
+	background: var(--btn-hover-bg);
+	border-color: var(--primary);
+	transform: translateY(-1px);
+}
+.anime-filter-tag.anime-active {
+	background: var(--primary);
+	color: white;
+	border-color: var(--primary);
+}
+
+.anime-grid-container [data-anime-status].anime-hidden {
+	display: none !important;
+}
+
+.anime-grid-container [data-anime-status] {
+	transition:
+		opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 0.15s ease-out,
+		border-color 0.2s ease;
+	content-visibility: auto;
+	contain-intrinsic-size: 1px 350px;
+}
+
+.anime-grid-container [data-anime-status]:hover {
+	box-shadow: 0 0 20px oklch(from var(--primary) l c h / 0.3);
+	border-color: var(--primary);
+}
+
+.anime-grid-container [data-anime-status].anime-fade-out {
+	opacity: 0;
+	transform: scale(0.9);
+	pointer-events: none;
+}
+
+.anime-grid-container [data-anime-status].anime-fade-in {
+	opacity: 0;
+	transform: scale(0.9);
+}
+
+.anime-grid-container [data-anime-status].anime-fade-in-active {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.anime-loading-spinner {
+	border-right-color: var(--primary);
+	animation: spin 1s linear infinite;
+}
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

@@ -48,4 +48,21 @@ export const id: Translation = {
 	[Key.thankYouNotHelpful]: "Terima kasih, kami akan memperbaikinya",
 	[Key.thankYouOtherFeedback]: "Terima kasih atas umpan baliknya!",
 	[Key.revokeFeedback]: "Batalkan",
+	[Key.helpfulCount]: "{count} menganggap ini membantu",
+	[Key.viewCount]: "{count} dilihat",
+
+	// Anime page
+	[Key.anime]: "Anime",
+	[Key.animeTitle]: "Daftar Anime",
+	[Key.animeSubtitle]: "Koleksi anime saya",
+	[Key.animeFilterAll]: "Semua",
+	[Key.animeStatusWatching]: "Menonton",
+	[Key.animeStatusCompleted]: "Selesai",
+	[Key.animeStatusPlanned]: "Direncanakan",
+	[Key.animeStatusOnHold]: "Ditunda",
+	[Key.animeStatusDropped]: "Dibatalkan",
+	[Key.animeYear]: "Tahun",
+	[Key.animeStudio]: "Studio",
+	[Key.animeEmpty]: "Tidak ada data anime",
+	[Key.animeEmptyLocal]: "Data anime lokal kosong",
 };

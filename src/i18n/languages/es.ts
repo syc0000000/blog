@@ -48,4 +48,21 @@ export const es: Translation = {
 	[Key.thankYouNotHelpful]: "Gracias, lo tendremos en cuenta",
 	[Key.thankYouOtherFeedback]: "¡Gracias por tu comentario!",
 	[Key.revokeFeedback]: "Deshacer",
+	[Key.helpfulCount]: "{count} lo encontraron útil",
+	[Key.viewCount]: "{count} visitas",
+
+	// Anime page
+	[Key.anime]: "Anime",
+	[Key.animeTitle]: "Lista de Anime",
+	[Key.animeSubtitle]: "Mi colección de anime",
+	[Key.animeFilterAll]: "Todo",
+	[Key.animeStatusWatching]: "Viendo",
+	[Key.animeStatusCompleted]: "Completado",
+	[Key.animeStatusPlanned]: "Planeado",
+	[Key.animeStatusOnHold]: "En pausa",
+	[Key.animeStatusDropped]: "Abandonado",
+	[Key.animeYear]: "Año",
+	[Key.animeStudio]: "Estudio",
+	[Key.animeEmpty]: "Sin datos de anime",
+	[Key.animeEmptyLocal]: "Datos de anime locales vacíos",
 };

@@ -48,4 +48,21 @@ export const vi: Translation = {
 	[Key.thankYouNotHelpful]: "Cảm ơn, chúng tôi sẽ cải thiện",
 	[Key.thankYouOtherFeedback]: "Cảm ơn phản hồi của bạn!",
 	[Key.revokeFeedback]: "Hoàn tác",
+	[Key.helpfulCount]: "{count} người thấy hữu ích",
+	[Key.viewCount]: "{count} lượt xem",
+
+	// Anime page
+	[Key.anime]: "Anime",
+	[Key.animeTitle]: "Danh sách Anime",
+	[Key.animeSubtitle]: "Bộ sưu tập anime của tôi",
+	[Key.animeFilterAll]: "Tất cả",
+	[Key.animeStatusWatching]: "Đang xem",
+	[Key.animeStatusCompleted]: "Hoàn thành",
+	[Key.animeStatusPlanned]: "Dự định xem",
+	[Key.animeStatusOnHold]: "Tạm dừng",
+	[Key.animeStatusDropped]: "Bỏ cuộc",
+	[Key.animeYear]: "Năm",
+	[Key.animeStudio]: "Studio",
+	[Key.animeEmpty]: "Không có dữ liệu anime",
+	[Key.animeEmptyLocal]: "Dữ liệu anime cục bộ trống",
 };

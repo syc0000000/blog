@@ -50,4 +50,19 @@ export const en: Translation = {
 	[Key.revokeFeedback]: "Undo",
 	[Key.helpfulCount]: "{count} found this helpful",
 	[Key.viewCount]: "{count} views",
+
+	// Anime page
+	[Key.anime]: "Anime",
+	[Key.animeTitle]: "Anime List",
+	[Key.animeSubtitle]: "My anime collection",
+	[Key.animeFilterAll]: "All",
+	[Key.animeStatusWatching]: "Watching",
+	[Key.animeStatusCompleted]: "Completed",
+	[Key.animeStatusPlanned]: "Planned",
+	[Key.animeStatusOnHold]: "On Hold",
+	[Key.animeStatusDropped]: "Dropped",
+	[Key.animeYear]: "Year",
+	[Key.animeStudio]: "Studio",
+	[Key.animeEmpty]: "No anime data",
+	[Key.animeEmptyLocal]: "Local anime data is empty",
 };

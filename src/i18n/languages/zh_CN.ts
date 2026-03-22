@@ -50,4 +50,19 @@ export const zh_CN: Translation = {
 	[Key.revokeFeedback]: "撤回",
 	[Key.helpfulCount]: "{count} 人觉得有帮助",
 	[Key.viewCount]: "{count} 次阅读",
+
+	// Anime page
+	[Key.anime]: "番剧",
+	[Key.animeTitle]: "番剧列表",
+	[Key.animeSubtitle]: "收藏的番剧列表",
+	[Key.animeFilterAll]: "全部",
+	[Key.animeStatusWatching]: "在看",
+	[Key.animeStatusCompleted]: "看完",
+	[Key.animeStatusPlanned]: "想看",
+	[Key.animeStatusOnHold]: "搁置",
+	[Key.animeStatusDropped]: "弃坑",
+	[Key.animeYear]: "年份",
+	[Key.animeStudio]: "工作室",
+	[Key.animeEmpty]: "暂无番剧数据",
+	[Key.animeEmptyLocal]: "本地番剧数据为空",
 };

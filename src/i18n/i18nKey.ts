@@ -47,6 +47,21 @@ enum I18nKey {
 	revokeFeedback = "revokeFeedback",
 	helpfulCount = "helpfulCount",
 	viewCount = "viewCount",
+
+	// Anime page
+	anime = "anime",
+	animeTitle = "animeTitle",
+	animeSubtitle = "animeSubtitle",
+	animeFilterAll = "animeFilterAll",
+	animeStatusWatching = "animeStatusWatching",
+	animeStatusCompleted = "animeStatusCompleted",
+	animeStatusPlanned = "animeStatusPlanned",
+	animeStatusOnHold = "animeStatusOnHold",
+	animeStatusDropped = "animeStatusDropped",
+	animeYear = "animeYear",
+	animeStudio = "animeStudio",
+	animeEmpty = "animeEmpty",
+	animeEmptyLocal = "animeEmptyLocal",
 }
 
 export default I18nKey;

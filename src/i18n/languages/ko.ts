@@ -48,4 +48,21 @@ export const ko: Translation = {
 	[Key.thankYouNotHelpful]: "피드백 감사합니다, 개선에 반영하겠습니다",
 	[Key.thankYouOtherFeedback]: "피드백 감사합니다!",
 	[Key.revokeFeedback]: "실행 취소",
+	[Key.helpfulCount]: "{count}명이 도움됨",
+	[Key.viewCount]: "{count} 조회",
+
+	// Anime page
+	[Key.anime]: "애니",
+	[Key.animeTitle]: "애니 목록",
+	[Key.animeSubtitle]: "애니 컬렉션",
+	[Key.animeFilterAll]: "전체",
+	[Key.animeStatusWatching]: "시청 중",
+	[Key.animeStatusCompleted]: "완료",
+	[Key.animeStatusPlanned]: "시청 예정",
+	[Key.animeStatusOnHold]: "보류",
+	[Key.animeStatusDropped]: "중단",
+	[Key.animeYear]: "연도",
+	[Key.animeStudio]: "스튜디오",
+	[Key.animeEmpty]: "애니 데이터 없음",
+	[Key.animeEmptyLocal]: "로컬 애니 데이터 없음",
 };

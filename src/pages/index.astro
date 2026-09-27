@@ -21,7 +21,6 @@ const recent = writing.slice(0, 5);
     {featured.length > 0 && <><p class="eyebrow sub">精选</p><div class="list">{featured.map((entry) => <PostCard entry={entry} />)}</div></>}
     <p class="eyebrow sub">最近更新</p><div class="list">{recent.map((entry) => <PostCard entry={entry} />)}</div>
   </section>
-  <section class="start container"><p class="eyebrow">02 / 从这里开始</p><h2>不确定从哪里读起？</h2><p>按问题、主题和阅读顺序找到适合自己的入口。</p><a href={sitePath('/start/')}>打开阅读地图 <Icon name="arrowRight" size="sm" /></a></section>
 </BaseLayout>
 <style>
   .hero { padding:clamp(4rem,10vw,9rem) 0 5rem; }
@@ -30,7 +29,5 @@ const recent = writing.slice(0, 5);
   .author { color:var(--muted); max-width:40rem; }
   .section-heading span { color:var(--accent); font-size:.8rem; font-family:ui-monospace,monospace; }
   .sub { margin-top:2rem; }
-  .start { margin-top:5rem; padding:3rem 0; border-block:1px solid var(--line); }
-  .start h2 { font-size:clamp(2rem,5vw,4rem); margin:.4rem 0; letter-spacing:-.05em; }
   @media(max-width:48rem){.hero{padding-top:4rem}}
 </style>

@@ -4,18 +4,22 @@ import { sitePath } from '../../lib/urls';
 import Icon from './Icon.astro';
 ---
 <footer class="site-footer container">
-  <div><strong>{site.name}</strong><p>{site.author.bio}</p></div>
+  <div><strong>{site.brand}</strong><p>{site.description}</p></div>
   <div class="footer-links">
     {site.social.map((item) => <a href={item.href} rel="me">{item.label} <Icon name="arrowUpRight" size="sm" /></a>)}
     {site.author.email && <a href={`mailto:${site.author.email}`}>Email <Icon name="arrowUpRight" size="sm" /></a>}
     {site.features.rss && <a href={sitePath('/rss.xml')}>RSS</a>}
   </div>
   <small>© {new Date().getFullYear()} {site.author.name} · <a href={site.license.url}>{site.license.name}</a></small>
+  <p class="icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener norefollow">蜀ICP备2026057227号</a></p>
 </footer>
 <style>
   .site-footer { display:grid; grid-template-columns:2fr 1fr auto; gap:2rem; border-top:1px solid var(--line); margin-top:6rem; padding:2rem 0 3rem; color:var(--muted); font-size:.88rem; }
   .site-footer p { max-width:28rem; margin:.4rem 0 0; }
   .footer-links { display:flex; flex-direction:column; gap:.35rem; }
   .site-footer a { color:inherit; }
+  .icp { grid-column:1 / -1; margin:0; font-size:.82rem; }
+  .icp a { text-decoration:none; }
+  .icp a:hover { text-decoration:underline; }
   @media (max-width: 42rem) { .site-footer { grid-template-columns:1fr; margin-top:4rem; } }
 </style>

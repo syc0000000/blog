@@ -54,3 +54,11 @@ export function excerpt(text: string, length = 180) {
   const clean = text.replace(/[#*_>`\[\]()]/g, '').replace(/\s+/g, ' ').trim();
   return clean.length > length ? `${clean.slice(0, length).trim()}…` : clean;
 }
+
+export function columnSlug(entry: CollectionEntry<'columns'>) {
+  return entry.data.slug || slugFromId(entry.id);
+}
+
+export function columnPath(entry: CollectionEntry<'columns'>) {
+  return sitePath(`/columns/${columnSlug(entry)}/`);
+}

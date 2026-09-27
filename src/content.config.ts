@@ -28,4 +28,18 @@ const writing = defineCollection({
   }),
 });
 
-export const collections = { writing };
+const columns = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/columns' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    locale,
+    draft: z.boolean().default(false),
+    order: z.number().default(0),
+    slug: z.string().regex(/^[^/?#]+$/),
+    book: z.string().optional(),
+    bookUrl: z.url().optional(),
+  }),
+});
+
+export const collections = { writing, columns };

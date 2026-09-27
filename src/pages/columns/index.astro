@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedCollection, columnPath, getPublishedWriting } from '../../lib/content';
+import Icon from '../../components/chrome/Icon.astro';
+const columns = (await getPublishedCollection('columns')).sort((a, b) => a.data.order - b.data.order);
+const writing = await getPublishedWriting();
+---
+<BaseLayout title="专栏 · NBB's Blog" description="按顺序组织的系列阅读。">
+  <header class="page-head container"><p class="eyebrow">Columns</p><h1>系列阅读。</h1><p>按推荐顺序读完的专栏，不是普通分类。</p></header>
+  <section class="container cards">
+    {columns.map((column) => (
+      <article>
+        <p class="eyebrow">{column.data.book ? `《${column.data.book}》` : `Series ${String(column.data.order).padStart(2, '0')}`}</p>
+        <h2><a href={columnPath(column)}>{column.data.title}</a></h2>
+        <p>{column.data.description}</p>
+        <small>{writing.filter((entry) => entry.data.column === column.data.title).length} 篇 · 按顺序阅读 <Icon name="arrowRight" size="sm" /></small>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+<style>
+  .page-head{padding:5rem 0 3rem}
+  .page-head h1{font-size:clamp(3rem,8vw,6rem);line-height:.95;letter-spacing:-.07em;margin:.5rem 0}
+  .page-head p{color:var(--muted);max-width:40rem}
+  .cards article{border-top:1px solid var(--line);padding:1.5rem 0}
+  .cards h2{margin:.3rem 0;font-size:1.7rem}
+  .cards article p:last-of-type{color:var(--muted);max-width:44rem}
+  .cards small{color:var(--muted);display:inline-flex;align-items:center;gap:.4rem;margin-top:.6rem}
+</style>

@@ -31,7 +31,7 @@ function relative(entry) {
   return path.relative(root, entry.file);
 }
 
-const collections = ['writing'];
+const collections = ['writing', 'columns'];
 const entries = new Map();
 for (const collection of collections) {
   const directory = path.join(contentRoot, collection);
@@ -72,6 +72,16 @@ function datePath(entry, collection) {
 }
 for (const entry of entries.get('writing')) {
   if (!isDraft(entry) && entry.data.publishedAt) addPath(entry, datePath(entry, 'writing'));
+}
+
+const columnTitles = new Set(entries.get('columns').filter((e) => !isDraft(e)).map((e) => e.data.title));
+for (const entry of entries.get('writing')) {
+  if (isDraft(entry) || !entry.data.column) continue;
+  if (!columnTitles.has(entry.data.column)) errors.push(`${relative(entry)}: unknown column "${entry.data.column}"`);
+}
+
+for (const entry of entries.get('columns')) {
+  if (!isDraft(entry)) addPath(entry, `/columns/${entry.data.slug || entrySlug(entry)}/`);
 }
 
 const tagPaths = new Map();

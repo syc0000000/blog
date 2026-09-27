@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import { getPublishedCollection } from '../../lib/content';
+export async function getStaticPaths(){
+  const columns = await getPublishedCollection('columns');
+  return columns.map((column) => ({ params: { slug: column.data.slug }, props: { column } }));
+}
+const { column } = Astro.props;
+const pageTitle = column.data.book ? `${column.data.title} · ${column.data.book}` : column.data.title;
+const entries = (await getPublishedCollection('writing'))
+  .filter((entry) => entry.data.column === column.data.title)
+  .sort((a, b) => (a.data.columnOrder ?? 0) - (b.data.columnOrder ?? 0));
+---
+<BaseLayout title={pageTitle} description={column.data.description}>
+  <header class="page-head container">
+    <p class="eyebrow">Column</p>
+    <h1>{column.data.title}</h1>
+    <p>{column.data.description}</p>
+    {column.data.bookUrl && <p class="book">原著：<a href={column.data.bookUrl}>{column.data.book}</a></p>}
+  </header>
+  <section class="container list">{entries.map((entry) => <PostCard entry={entry} />)}</section>
+</BaseLayout>
+<style>
+  .page-head{padding:5rem 0 3rem}
+  .page-head h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0}
+  .page-head p{color:var(--muted);max-width:44rem}
+  .book a{color:var(--accent)}
+</style>

@@ -83,7 +83,7 @@ function addPath(entry, url) {
 文章 URL 从 `publishedAt` 推导，不允许手动指定：
 
 ```
-/articles/2026/09/hello-world/
+/articles/2026/03/java-mianjing/
          └──┬──┘ └──┬───┘ └───┬──┘
           年      月      slug
 ```

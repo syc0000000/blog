@@ -12,9 +12,9 @@ const currentPage = 1;
 const pageEntries = writing.slice(0, site.writingPageSize);
 ---
 <BaseLayout title="文章 · NBB's Blog" description="全部文章与年份归档。">
-  <header class="page-head container"><p class="eyebrow">Articles</p><h1>全部文章。</h1><p>共 {writing.length} 篇，按最近发布或更新排序。</p></header>
-  <div class="container years"><span>年份</span>{years.map((year) => <a href={sitePath(`/writing/${year}/`)}>{year}</a>)}</div>
+  <header class="page-head container"><p class="eyebrow">文章</p><h1>全部文章。</h1><p>共 {writing.length} 篇，按最近发布或更新排序。</p></header>
+  <div class="container years"><span>年份</span>{years.map((year) => <a href={sitePath(`/articles/${year}/`)}>{year}</a>)}</div>
   <section class="container list">{pageEntries.map((entry) => <PostCard entry={entry} />)}</section>
-  <div class="container"><Pagination current={currentPage} total={totalPages} base="/writing" /></div>
+  <div class="container"><Pagination current={currentPage} total={totalPages} base="/articles" /></div>
 </BaseLayout>
 <style>.page-head{padding:5rem 0 2rem}.page-head h1{font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.02;letter-spacing:-.06em;max-width:55rem;margin:.5rem 0}.page-head p{color:var(--muted)}.years{display:flex;gap:.8rem;flex-wrap:wrap;padding:1rem 0 2rem}.years span{color:var(--muted)}</style>

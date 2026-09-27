@@ -17,7 +17,7 @@ const recent = writing.slice(0, 5);
     <p class="author">{site.author.name} · <a href={sitePath('/about/')}>{site.author.bio}</a></p>
   </section>
   <section class="container">
-    <div class="section-heading"><h2><span>01 /</span> 写作</h2><a href={sitePath('/writing/')}>全部 {writing.length} 篇 <Icon name="arrowRight" size="sm" /></a></div>
+    <div class="section-heading"><h2><span>01 /</span> 文章</h2><a href={sitePath('/articles/')}>全部 {writing.length} 篇 <Icon name="arrowRight" size="sm" /></a></div>
     {featured.length > 0 && <><p class="eyebrow sub">精选</p><div class="list">{featured.map((entry) => <PostCard entry={entry} />)}</div></>}
     <p class="eyebrow sub">最近更新</p><div class="list">{recent.map((entry) => <PostCard entry={entry} />)}</div>
   </section>

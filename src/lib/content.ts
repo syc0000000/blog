@@ -31,7 +31,7 @@ export function slugFromId(id: string) {
 
 export function writingPath(entry: Writing) {
   const date = entry.data.publishedAt;
-  return sitePath(`/writing/${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${slugFromId(entry.id)}/`);
+  return sitePath(`/articles/${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${slugFromId(entry.id)}/`);
 }
 
 export function yearOf(entry: Writing) {

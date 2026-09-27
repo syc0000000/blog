@@ -65,6 +65,14 @@ SITE_URL=https://www.nbbnbb.com.cn BASE_PATH=/ npm run build
 > 注意：Astro 7 要求 **Node >= 22.12.0**。服务器上装的是 Node 22.23.3。
 > 升级依赖时改版本号后要同步更新 `package-lock.json`。
 
+## 待办
+
+- [ ] **补全 About 页**：目前是占位内容，列出想写的几个方面（自我介绍、站点定位、技术栈、合作方式）
+- [ ] **AI 补全 description**：`npm run ai:check` 列出 3 篇过短的文章，需要配置 API Key 后运行 `npm run ai:descriptions`
+- [ ] **补图**：Obsidian 笔记里的 28 处本地图片（`assets/`）已删除，原图只存在本地磁盘。需要的话从 Obsidian 导出图片到 `src/content/writing/` 再插入
+- [ ] **全文搜索**：现在是浏览器端 `includes` 匹配，文章多了会不准，可换 Pagefind 或 MiniSearch
+- [ ] **评论系统 / CI**：暂未接入
+
 ## AI 自动补 description
 
 有些文章正文开头就是代码块或者内容极短，自动提取的摘要质量不行。可以用 AI 补一版。

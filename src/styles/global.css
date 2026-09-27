@@ -9,7 +9,7 @@ a { color: inherit; text-underline-offset: 0.18em; }
 button, input { font: inherit; }
 button { color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.container { width: min(100% - 2rem, 72rem); margin: 0 auto; }
+.container { width: min(100% - 2rem, 64rem); margin: 0 auto; }
 .narrow { width: min(100% - 2rem, 48rem); margin: 0 auto; }
 .skip-link { position: absolute; left: 1rem; top: -5rem; padding: .5rem .75rem; background: var(--ink); color: var(--paper); z-index: 10; }
 .skip-link:focus { top: 1rem; }

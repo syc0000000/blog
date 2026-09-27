@@ -50,22 +50,6 @@ export function tagSlug(tag: string) {
   return tag.toLowerCase().trim().replace(/[\\/?#%]+/g, '-').replace(/\s+/g, '-');
 }
 
-export function columnSlug(entry: CollectionEntry<'columns'>) {
-  return entry.data.slug || slugFromId(entry.id);
-}
-
-export function columnPath(entry: CollectionEntry<'columns'>) { return sitePath(`/columns/${columnSlug(entry)}/`); }
-export function projectPath(entry: CollectionEntry<'projects'>) {
-  const date = entry.data.publishedAt;
-  return sitePath(`/projects/${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${slugFromId(entry.id)}/`);
-}
-export function researchPath(entry: CollectionEntry<'research'>) {
-  const date = entry.data.publishedAt;
-  return sitePath(`/research/${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${slugFromId(entry.id)}/`);
-}
-export function photoPath(entry: CollectionEntry<'photos'>) { return sitePath(`/photos/${entry.data.slug}/`); }
-export function linkSlug(entry: CollectionEntry<'links'>) { return slugFromId(entry.id); }
-
 export function excerpt(text: string, length = 180) {
   const clean = text.replace(/[#*_>`\[\]()]/g, '').replace(/\s+/g, ' ').trim();
   return clean.length > length ? `${clean.slice(0, length).trim()}…` : clean;

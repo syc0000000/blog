@@ -31,7 +31,7 @@ function relative(entry) {
   return path.relative(root, entry.file);
 }
 
-const collections = ['writing', 'columns', 'projects', 'research', 'photos', 'links'];
+const collections = ['writing'];
 const entries = new Map();
 for (const collection of collections) {
   const directory = path.join(contentRoot, collection);
@@ -43,16 +43,7 @@ for (const collection of collections) {
     }
     if (entry.data.locale && !['zh-cn', 'en'].includes(entry.data.locale)) errors.push(`${relative(entry)}: unsupported locale ${entry.data.locale}`);
     if (isDraft(entry)) continue;
-    if (['writing', 'projects', 'research'].includes(collection) && !entry.data.publishedAt) errors.push(`${relative(entry)}: missing publishedAt`);
-    if (collection === 'links' && !/^https?:\/\//.test(entry.data.url ?? '')) errors.push(`${relative(entry)}: url must use http(s)`);
-    if (collection === 'photos') {
-      const assets = [entry.data.cover, ...(Array.isArray(entry.data.photos) ? entry.data.photos.map((photo) => photo?.src) : [])].filter(Boolean);
-      for (const asset of assets) {
-        if (typeof asset === 'string' && asset.startsWith('/') && !fs.existsSync(path.join(publicRoot, asset.slice(1)))) {
-          warnings.push(`${relative(entry)}: photo asset not found: ${asset}`);
-        }
-      }
-    }
+    if (collection === 'writing' && !entry.data.publishedAt) errors.push(`${relative(entry)}: missing publishedAt`);
   }
 }
 
@@ -67,12 +58,6 @@ for (const [collection, current] of entries) {
   }
 }
 
-const columns = new Set(entries.get('columns').filter((entry) => !isDraft(entry)).map((entry) => entry.data.title));
-for (const entry of entries.get('writing')) {
-  if (isDraft(entry) || !entry.data.column) continue;
-  if (!columns.has(entry.data.column)) errors.push(`${relative(entry)}: unknown column "${entry.data.column}"`);
-}
-
 const paths = new Set();
 function addPath(entry, url) {
   if (paths.has(url)) errors.push(`${relative(entry)}: duplicate public path ${url}`);
@@ -85,18 +70,8 @@ function datePath(entry, collection) {
   const date = new Date(entry.data.publishedAt);
   return `/${collection}/${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${entrySlug(entry)}/`;
 }
-for (const collection of ['writing', 'projects', 'research']) {
-  for (const entry of entries.get(collection)) {
-    if (!isDraft(entry) && entry.data.publishedAt) addPath(entry, datePath(entry, collection));
-  }
-}
-for (const entry of entries.get('columns')) {
-  if (!isDraft(entry)) addPath(entry, `/columns/${entry.data.slug || entrySlug(entry)}/`);
-}
-for (const entry of entries.get('photos')) {
-  if (isDraft(entry)) continue;
-  if (!entry.data.slug) errors.push(`${relative(entry)}: missing slug`);
-  else addPath(entry, `/photos/${entry.data.slug}/`);
+for (const entry of entries.get('writing')) {
+  if (!isDraft(entry) && entry.data.publishedAt) addPath(entry, datePath(entry, 'writing'));
 }
 
 const tagPaths = new Map();

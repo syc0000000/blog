@@ -5,3 +5,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# AI 配置（可能含 API Key，不提交）
+ai.config.json

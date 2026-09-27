@@ -99,3 +99,17 @@ if (warnings.length) {
   console.warn(`Warnings (${warnings.length}):`);
   warnings.forEach((warning) => console.warn(`- ${warning}`));
 }
+
+// description 长度体检：只警告不阻断。需要补全时跑 `npm run ai:descriptions`。
+const SHORT_DESC = 25;
+const shortDescs = entries
+  .get('writing')
+  .filter((entry) => !isDraft(entry))
+  .map((entry) => ({ title: entry.data.title ?? '?', len: String(entry.data.description ?? '').length }))
+  .filter((item) => item.len < SHORT_DESC)
+  .sort((a, b) => a.len - b.len);
+if (shortDescs.length) {
+  console.warn(`Descriptions shorter than ${SHORT_DESC} chars (${shortDescs.length}):`);
+  shortDescs.forEach((item) => console.warn(`- ${item.len} chars: ${item.title}`));
+  console.warn(`  Run \`npm run ai:descriptions\` to fill them with AI.`);
+}

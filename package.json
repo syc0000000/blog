@@ -9,7 +9,11 @@
     "check": "npm run validate:content && astro check",
     "validate:content": "node scripts/validate-content.mjs",
     "build": "npm run validate:content && astro check && astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "ai:descriptions": "node scripts/ai-descriptions.mjs",
+    "ai:check": "node scripts/ai-descriptions.mjs --check",
+    "ai:descriptions:all": "node scripts/ai-descriptions.mjs --all",
+    "ai:descriptions:dry": "node scripts/ai-descriptions.mjs --dry"
   },
   "dependencies": {
     "@astrojs/rss": "4.0.19",

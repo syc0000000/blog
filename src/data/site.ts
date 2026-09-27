@@ -3,13 +3,13 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = `${siteOrigin}${basePath}`;
 
 export const site = {
-  name: 'nbbnbb',
+  name: '在 AI 时代，生产与生活',
   title: "NBB's Blog",
-  description: '记录一些技术&杂七杂八.',
+  description: '记录技术、工具与日常，也记录 AI 带来的变化。',
   url: siteUrl,
   author: {
     name: 'nbbnbb',
-    bio: '记录一些技术&杂七杂八.',
+    bio: 'Java 后端 · 关注 AI 工程实践',
     email: '',
   },
   locale: 'zh-cn',
